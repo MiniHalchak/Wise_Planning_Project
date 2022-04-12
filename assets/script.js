@@ -6,7 +6,7 @@ const infoCompName = 'https://financialmodelingprep.com/api/v3/search-name?query
 const infoFinNews = 'https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=${apiKey}';
 const infoCompRating = 'https://financialmodelingprep.com/api/v3/rating/${ticker}?apikey=${apiKey}'
 
-searchForm.addEventListener('submit', retrieve)
+// searchForm.addEventListener('submit', retrieve)
 
 function retrieve(e){
 
