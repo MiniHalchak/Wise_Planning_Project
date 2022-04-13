@@ -1,5 +1,6 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
+
 :root {
     --main-nav-bg-color: rgb(252, 252, 252);
     --main-logo-green: rgb(134, 191, 115);
@@ -25,3 +26,29 @@
     color: #888;
     font-size: 2em;
   }
+
+.footer-container {
+    display: flex;
+    max-width: 100%;
+    background-color: lightgrey;
+    padding:10px 0;
+    margin: 0 100px;
+}
+
+
+.footer-formatting{
+    display: flex;
+    justify-content:space-evenly;
+    max-width: 100%;
+    list-style-type: none;
+    text-decoration: none;
+    text-align: center;
+    background-color: lightgrey;
+    padding:10px 0;
+    margin: 0 100px;
+}
+
+.footer-formatting a {
+    color: black;
+}
+
