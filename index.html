@@ -6,38 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Link to stylesheet, feel free to add more if necessary-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/style.css">
 
     <title>Wise Planning</title>
 </head>
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <!--NavBar-->
+    <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="/index.html">
-            <img src="assets/" width="112" height="28">
+            <img src="./assets/image/logo_bigger10x10.png" alt="site logo" style="max-height: 70px">
           </a>
-      
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a role="button" class="navbar-burger is-large" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
-      
-        <div class="navbar-menu navbar-end">
-          <div class="navbar-start">
-            <a class="navbar-item">
+        <div class="navbar-menu">
+          <div class="navbar-end nav-link">
+            <a class="navbar-item" href="#">
                 Home
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" href="#">
                 About us
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" href="#">
                 Our Team
             </a>
             </div>
         </div>
-      </nav>
+    </nav>
+    <!-- Hero content: will be in the middle, search button and time-->
+    <header>
+      <section class="container" style="justify-content: center;">
+        <h1>Get
+        <span
+           class="txt-rotate"
+           data-period="3000"
+           data-rotate='[ "facts.", "latest news."]'></span>
+        </h1>
+        <h2>Data driven decisions.</h2>
+      </section>
+      <div class="container is-centered">
+        <div class="field is-grouped has-addons">
+          <div class="control has-icons-left is-expanded">
+            <p>
+              <input class="input is-success" type="text" placeholder="Find by company name or ticker">
+              <span class="icon is-small is-left">
+                <i class="fas fa-search"></i>
+              </span>
+            </p>
+          </div>
+            <p class="sucess">
+              <button class="button is-success">
+                Search
+              </button>
+            </p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </header>
     <!--day.js to format dates-->
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
@@ -58,7 +90,10 @@
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <!--fontawesome-->
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <!--moving letters-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <!--Link to js file, feel free to add more if necessary-->
     <script src="./assets/script.js"></script>
 </body>
