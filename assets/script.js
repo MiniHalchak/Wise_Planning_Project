@@ -45,10 +45,25 @@ function retrieve(e){
 }
 
 
-
-
-
 fetch('https://financialmodelingprep.com/api/v3/quote/AAPL?apikey=00bd83fe665028f00039a626fdabd48e')
 	.then(response => response.json())
 	.then(data => console.log(data))
 	.catch(err => console.error(err));
+
+//variable
+var searchData = 'https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2022-04-08/2022-04-08?adjusted=true&sort=asc&limit=120&apiKey=jVeWqQOEafgJX73FKFxxBZJ0M5RtPnp6';
+
+// let polyApiKey = "jVeWqQOEafgJX73FKFxxBZJ0M5RtPnp6";
+
+function polyData(request) {
+      fetch(searchData)
+        .then(function(res) {
+            console.log(res);
+            return res.json()
+        })
+        .then(function(data){
+            console.log(data);
+        });
+    }
+
+    polyData(searchData);
