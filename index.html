@@ -6,30 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Link to stylesheet, feel free to add more if necessary-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/style.css">
 
     <title>Wise Planning</title>
 </head>
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <!--NavBar-->
+    <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="/index.html">
-            <img src="assets/" width="112" height="28">
+            <img src="./assets/image/logo_bigger10x10.png" alt="site logo" style="max-height: 70px">
           </a>
-      
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a role="button" class="navbar-burger is-large" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
-      
-        <div class="navbar-menu navbar-end">
-          <div class="navbar-start">
-            <a class="navbar-item">
+        <div class="navbar-menu">
+          <div class="navbar-end nav-link">
+            <a class="navbar-item" href="#">
                 Home
             </a>
+
             <a class="navbar-item" href="./About-us.html">
                 About us
             </a>
@@ -38,44 +40,72 @@
             </a>
             </div>
         </div>
-      </nav>
-      <!--beginning columns | feel free to edit if necessary-->
-      <section class="container display-flex space-between">
-        <div class="columns is-vcentered">
-          <!--borders are in place to view positioning-->
-          <div id="stocks" class="column is-two-thirds" style="border: solid rgb(179, 172, 172)">
+    </nav>
+    <!-- Hero content: will be in the middle, search button and time-->
+    <header>
+      <section class="container" style="justify-content: center;">
+        <h1>Get
+        <span
+           class="txt-rotate"
+           data-period="3000"
+           data-rotate='[ "facts.", "latest news."]'></span>
+        </h1>
+        <h2>Data driven decisions.</h2>
+      </section>
+      <div class="container is-centered">
+        <div class="field is-grouped has-addons">
+          <div class="control has-icons-left is-expanded">
+            <p>
+              <input class="input is-success" type="text" placeholder="Find by company name or ticker">
+              <span class="icon is-small is-left">
+                <i class="fas fa-search"></i>
+              </span>
+            </p>
+          </div>
+            <p class="sucess">
+              <button id="submitBtn" class="button is-success">
+                Search
+              </button>
+            </p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </header>
+    <br>
+    <section>
+      <div class="container">
+        <div class="columns">
+          <div class="column is-half" style="border: solid rgb(179, 172, 172)">
             <h1>Stock Information</h1>    
-            <!--Replace text with boxes--> 
+            <!--1st column--> 
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde rem blanditiis quidem totam voluptatibus 
               voluptas cum laudantium qui rerum autem, atque corporis ea error, odio possimus. Totam in animi facere.</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aliquam, 
                 quos earum et, vel illum sint velit ab impedit eligendi quibusdam,
                 ipsum veritatis odio aperiam ut excepturi ullam inventore deserunt.</p>
-            
-            <div class="column">
-            <p class="bd-notification">Lorem ipsum dolor sit amet consectetur 
-              adipisicing elit. Accusamus veritatis doloribus voluptate reprehenderit 
-              cupiditate ex adipisci quam ducimus eligendi quasi amet, dolorem, 
-              officia repellat quia velit quos culpa, ratione laboriosam.</p>
-            </div> 
-          </div>
-          <!--2nd column-->
-          <div id="news" class="column is-two-thirds" style="border: solid rgb(147, 142, 142)">
-             <h1>News</h1> 
-             <!--Replace text with boxes--> 
-             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aliquam, 
-                quos earum et, vel illum sint velit ab impedit eligendi quibusdam,
-                ipsum veritatis odio aperiam ut excepturi ullam inventore deserunt.</p>
-          </div>
+                <div id="info-list">
+                </div>
+              </div>
+            <!--2nd column-->
+            <div class="column is-half" style="border: solid rgb(179, 172, 172)">
+              <h1>News</h1> 
+              <!--Replace text with boxes--> 
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aliquam, 
+              quos earum et, vel illum sint velit ab impedit eligendi quibusdam,
+              ipsum veritatis odio aperiam ut excepturi ullam inventore deserunt.</p></div>
         </div>
-      </section>
-      <!--End of columns-->
-      <div>
-          <ul class="footer-formatting">
-            <li><a href="./About-us.html">About Us</a></li>
-            <li><a href="./The-team.html">The Team</a></li>
-          </ul>
+    </section>
+    <!--End of columns-->
+    <footer class="footer" style="background-color: hsl(0, 0%, 96%);">
+      <div class="content has-text-centered">
+        <p>
+          <strong>The 200's </strong><a href="./The-team.html">Meet the team </a>
+          <a href="http://opensource.org/licenses/mit-license.php"></a> or learn more<a href="./About-us.html"> About us</a>.
+        </p>
       </div>
+    </footer>
+
     <!--day.js to format dates-->
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
@@ -96,7 +126,10 @@
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <!--fontawesome-->
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <!--moving letters-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <!--Link to js file, feel free to add more if necessary-->
     <script src="./assets/script.js"></script>
 </body>
