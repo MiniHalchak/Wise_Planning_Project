@@ -27,28 +27,4 @@
     font-size: 2em;
   }
 
-.footer-container {
-    display: flex;
-    max-width: 100%;
-    background-color: lightgrey;
-    padding:10px 0;
-    margin: 0 100px;
-}
-
-
-.footer-formatting{
-    display: flex;
-    justify-content:space-evenly;
-    max-width: 100%;
-    list-style-type: none;
-    text-decoration: none;
-    text-align: center;
-    background-color: lightgrey;
-    padding:10px 0;
-    margin: 0 100px;
-}
-
-.footer-formatting a {
-    color: black;
-}
 

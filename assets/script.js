@@ -1,79 +1,81 @@
-const searchForm = document.querySelector('.search');
+const submitBtn = document.querySelector('#submitBtn');
 const input = document.querySelector('.input');
-const infoList = document.querySelector('info-list');
+const infoList = document.querySelector('#info-list');
 const infoTickerUrl = 'https://api.polygon.io/v3/reference/tickers?active=true&sort=ticker&order=asc&limit=10&apiKey=M_EhIQKuJcODpxzxwlrUpvo8tpGkSqet';
 const infoCompName = 'https://financialmodelingprep.com/api/v3/search-name?query=meta&limit=10&exchange=NASDAQ&apikey=${apiKey}';
 const infoFinNews = 'https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=${apiKey}';
 const infoCompRating = 'https://financialmodelingprep.com/api/v3/rating/${ticker}?apikey=${apiKey}'
+let searchResults = [];
+submitBtn.addEventListener('click', retrieve);
 
-// searchForm.addEventListener('submit', retrieve)
-
+//
 function retrieve(e){
-
+  // searchResults = [
+  //   {symbol: 'AAPL', name: 'Apple Inc.', currency: 'USD', stockExchange: 'NASDAQ Global Select', exchangeShortName: 'NASDAQ'},
+  //   {symbol: 'MLP', name: 'Maui Land & Pineapple Company, Inc.', currency: 'USD', stockExchange: 'New York Stock Exchange', exchangeShortName: 'NYSE'},
+  //   {symbol: 'APLE', name: 'Apple Hospitality REIT, Inc.', currency: 'USD', stockExchange: 'New York Stock Exchange', exchangeShortName: 'NYSE'}];
+  e.preventDefault();
 	if (input.value == ''){
 		alert('Input field is empty')
 		return
 	}
 
-	infoList.innerHTML = ''
+	// infoList.innerHTML = ''
 
-	e.preventDefault()
-
-	const apiKey = '00bd83fe665028f00039a626fdabd48e'
-	let topic = input.value;
-
-	let url = 'https://financialmodelingprep.com/api/v3/search?query=AA&limit=10&exchange=NASDAQ&apikey=${apiKey}'
-
-	fetch(url).then((res)=>{
-		return res.json()
-	}).then((data)=>{
-		console.log(data)
-		data.articles.forEach(article =>{
-			let li = document.createElement('li');
-			let a = document.createElement('a');
-			a.setAttribute('href', article.url );
-			a.setAttribute('target', '-blank');
-			a.textContent = article.title;
-			li.appendChild(a);
-			infoList.appendChild(li);
-		})
-
-	}).catch((error)=>{
-		console.log(error);
-	})
-
+	const apiKey = '0d784df591c50ec5f238976a008df8c3'
+	let searchTerm = input.value;
+//US has these 3 exchanges, so we would need to call the 3 markets to show all the companies in those exchanges 
+  let queryNasqad = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=NASDAQ&apikey=${apiKey}`;
+  let queryNyse = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=NYSE&apikey=${apiKey}`;
+  let queryAmex = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=AMEX&apikey=${apiKey}`;
+//Array with the 3 exchanges so then we were able to iterate in those 3 results
+  let exchangesArr = [queryNasqad, queryNyse, queryAmex ];
+if (searchResults.length == 0) { 
+  for (exchange in exchangesArr){
+    fetch(exchangesArr[exchange]).then((res)=>{
+      return res.json()
+    }).then((data)=>{
+      agregateSearchRes(data);
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
 }
+  displaySearchRes(searchResults);
+}
+//this function merges all 3 results into 1 array that is on line 32
+function agregateSearchRes(data){
+  for (result in data){
+    searchResults.push(data[result]);
+  }
+}
+//this shows/creates html elements
+function displaySearchRes(data){
+  data.forEach(searchResult =>{
+    let ul = document.createElement('ul');
+    let li = document.createElement('li');
+    let a = document.createElement('a');
+    a.setAttribute('data-ticker', searchResult.symbol);
+    a.textContent = searchResult.name;
+    li.appendChild(a);
+    ul.appendChild(li);
+    infoList.appendChild(ul);
+  })
+}
+//listener that listens to any click given to any a element in the infoList
+infoList.addEventListener("click", function(event) {
+  var element = event.target;
+  if (element.matches("a") === true) {
+      var ticker = element.getAttribute("data-ticker");
+      polyData(ticker);
+  }
+});
 
+//function that calls polygon by ticker
 
-fetch('https://financialmodelingprep.com/api/v3/quote/AAPL?apikey=00bd83fe665028f00039a626fdabd48e')
-	.then(response => response.json())
-	.then(data => console.log(data))
-	.catch(err => console.error(err));
-
-//variable
-var searchPolyData = 'https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2022-04-08/2022-04-08?adjusted=true&sort=asc&limit=120&apiKey=jVeWqQOEafgJX73FKFxxBZJ0M5RtPnp6';
-
-// let polyApiKey = "jVeWqQOEafgJX73FKFxxBZJ0M5RtPnp6";
-
-function polyData(request) {
-      fetch(searchPolyData)
-        .then(function(res) {
-            console.log(res);
-            return res.json()
-        })
-        .then(function(data){
-            console.log(data);
-        });
-    }
-    polyData(searchPolyData);
-
-
-//Add company rating to add recommendations (green, red, yellow)
-var financialCompany = 'https://financialmodelingprep.com/api/v3/historical-rating/AAPL?limit=100&apikey=6b5b1e9afa1a31cc4e5f0033e2ee6e9b';
-// financialModelingApi = "6b5b1e9afa1a31cc4e5f0033e2ee6e9b"
-
-function financeData(request) {
-    fetch(financialCompany)
+function polyData(ticker) {
+  var queryTicker = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=jVeWqQOEafgJX73FKFxxBZJ0M5RtPnp6`;
+    fetch(queryTicker)
       .then(function(res) {
           console.log(res);
           return res.json()
@@ -81,8 +83,12 @@ function financeData(request) {
       .then(function(data){
           console.log(data);
       });
-  }
-  financeData(financialCompany);
+    }
+
+  //to do:
+  //display Polygon Data: closing price, highest, lowest
+  //create call for news to display on main page
+  //create call for gainers and losers to be displayed on main page
 
   //rotating phrase
   var TxtRotate = function(el, toRotate, period) {
